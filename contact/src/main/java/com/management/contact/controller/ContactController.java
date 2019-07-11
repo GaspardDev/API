@@ -74,7 +74,7 @@ public class ContactController {
     @PutMapping(value = "/update/{id}")
     public Contact updateContact(@PathVariable long id,
                                  @Valid @RequestBody Contact contact) {
-
+        contact = contactService.getContact(id).orElse(null);
         isExist(id);
         Objects.requireNonNull(contact.getLastName(), "Il manque le nom de famille !");
         Objects.requireNonNull(contact.getFirstName(), "Il manque le prénom !");
@@ -82,15 +82,14 @@ public class ContactController {
         Objects.requireNonNull(contact.getIsProfessionnal(), "Renseignez si c'est un professionnel ou non !");
         Objects.requireNonNull(contact.getBirthDate(), "Date d'anniversaire manquante !");
 
-
         contact.setLastName(contact.getLastName());
         contact.setFirstName(contact.getFirstName());
         contact.setAddress(contact.getAddress());
         contact.setIsProfessionnal(contact.getIsProfessionnal());
         contact.setBirthDate(contact.getBirthDate());
 
-        Contact updatedContact = contactService.addContact(contact);
 
+        Contact updatedContact = contactService.addContact(contact);
         Objects.requireNonNull(contact, "La mise à jour du contact a échouée");
 
         return updatedContact;

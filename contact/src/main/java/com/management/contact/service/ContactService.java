@@ -3,11 +3,9 @@ package com.management.contact.service;
 import com.management.contact.dao.ContactDao;
 import com.management.contact.model.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 @Service
